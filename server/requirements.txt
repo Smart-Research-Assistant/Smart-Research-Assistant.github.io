@@ -1,0 +1,4 @@
+Flask
+werkzeug
+langchain
+pinecone-client

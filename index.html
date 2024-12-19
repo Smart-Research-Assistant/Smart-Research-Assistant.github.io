@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <h1>Fraud Detection System</h1>
+    <form id="uploadForm" action="/analyze" method="POST" enctype="multipart/form-data">
+        <input type="file" name="pdf" accept=".pdf" required>
+        <button type="submit">Analyze</button>
+    </form>
+    <div id="result"></div>
+    <script src="static/js/script.js"></script>
+</body>
+</html>
