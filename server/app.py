@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, jsonify
 import os
 from werkzeug.utils import secure_filename
-from rag_pipeline import analyze_pdf
+from rag_pipeline import analyze_document
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './uploads'
@@ -23,7 +23,7 @@ def analyze():
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
-        result = analyze_pdf(filepath)  # Call your RAG function
+        result = analyze_document(filepath)  # Call your RAG function
         return jsonify({"message": result})
     else:
         return jsonify({"error": "Invalid file format"}), 400
