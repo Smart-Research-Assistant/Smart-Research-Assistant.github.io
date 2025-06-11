@@ -1,18 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fraud Detection</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ScholarMate - Research Assistant</title>
+    <link rel="stylesheet" href="style/main.css" />
 </head>
+
 <body>
-    <h1>Fraud Detection System</h1>
-    <form id="uploadForm" action="/analyze" method="POST" enctype="multipart/form-data">
-        <input type="file" name="pdf" accept=".pdf" required>
-        <button type="submit">Analyze</button>
-    </form>
-    <div id="result"></div>
-    <script src="static/js/script.js"></script>
+    <header class="header">
+        <img src="assets/logo.png" alt="ScholarMate Logo" />
+        <h1>ScholarMate - Smart Research Assistant</h1>
+    </header>
+
+    <main class="container">
+        <section id="reference">
+            <h2>🎯 Reference Generator (from Article URL or DOI)</h2>
+            <input type="text" id="doiInput" placeholder="Paste article link or DOI here" />
+            <button onclick="generateReference()">Generate Reference</button>
+            <pre id="referenceResult"></pre>
+        </section>
+
+
+        <section id="mindmap">
+            <h2>🧠 Research Mind Map</h2>
+            <div class="controls">
+                <input type="text" id="nodeText" placeholder="Node title">
+                <button onclick="addChild()">Add Child</button>
+                <button onclick="deleteNode()">Delete Selected</button>
+                <button onclick="exportMap()">Export JSON</button>
+                <input type="file" onchange="importMap(event)">
+            </div>
+
+            <ul id="mindmap">
+                <li onclick="selectNode(this)">Main Topic</li>
+            </ul>
+        </section>
+
+        <section id="checklist">
+            <h2>✅ Paper Writing Checklist</h2>
+            <ul id="checklist">
+                <li><label><input type="checkbox" data-id="item1" /> Title is clear and specific</label></li>
+                <li><label><input type="checkbox" data-id="item2" /> Abstract summarizes the paper</label></li>
+                <li><label><input type="checkbox" data-id="item3" /> Introduction includes research question</label>
+                </li>
+                <li><label><input type="checkbox" data-id="item4" /> Methodology is reproducible</label></li>
+                <li><label><input type="checkbox" data-id="item5" /> Results are clearly presented with
+                        figures/tables</label></li>
+                <li><label><input type="checkbox" data-id="item6" /> Discussion explains the significance of
+                        results</label></li>
+                <li><label><input type="checkbox" data-id="item7" /> References follow the required citation
+                        style</label></li>
+            </ul>
+            <button id="clearBtn">Clear All</button>
+        </section>
+
+        <section id="summarizer">
+            <h2>📄 Text Summarizer</h2>
+            <textarea id="textToSummarize" placeholder="Paste your paragraph or abstract here..."></textarea>
+            <div class="buttons">
+              <button onclick="summarize()">Summarize</button>
+              <button onclick="clearSummary()">Clear</button>
+            </div>
+            <div id="summaryOutput" class="summary-box"></div>
+          </section>
+
+          <section id="speech">
+            <h2>🎤 Speech to Text</h2>
+            <button id="startRecordingBtn" onclick="startDictation()">Start Recording</button>
+            <textarea id="speechResult" placeholder="Spoken words will appear here..." rows="6"></textarea>
+          </section>
+
+          <section id="pomodoro">
+            <h2>⏳ Pomodoro Timer</h2>
+            <div id="timerDisplay" class="timer-display">25:00</div>
+            <div class="pomodoro-controls">
+              <button id="startBtn">Start</button>
+              <button id="pauseBtn" disabled>Pause</button>
+              <button id="resetBtn">Reset</button>
+            </div>
+          </section>
+          
+          
+    </main>
+
+    <footer>
+        <p>
+          Built with ❤️ by
+          <a href="https://miladnasrii.github.io/" target="_blank" rel="noopener noreferrer" title="Visit my personal website" class="signature-link">
+            Milad Nasri.
+          </a>
+        </p>
+      </footer>
+      
+
+    <script src="js/main.js"></script>
+    <script src="js/references.js"></script>
+    <script src="js/mindmap.js"></script>
+    <script src="js/checklist.js"></script>
+    <script src="js/speech.js"></script>
+
 </body>
 </html>
